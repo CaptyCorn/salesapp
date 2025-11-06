@@ -18,21 +18,26 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav me-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="/">Trang chủ</a>
                 </li>
                 {% for c in categories %}
                 <li class="nav-item">
-                    <a class="nav-link" href="/category_id={{ c.id }}">{{ c }}</a>
+                    <a class="nav-link" href="/?category_id={{ c.id }}">{{ c }}</a>
                 </li>
                 {% endfor %}
             </ul>
+            <form method="get" action="/" class="d-flex">
+                <input class="form-control me-2" type="text" placeholder="Từ khóa" name="kw">
+                <button class="btn btn-primary" type="button">Tìm</button>
+            </form>
         </div>
     </div>
 </nav>
 
-<section class="container p-5 my-5 bg-dark text-white">
+<section class="container p-5">
+    {% if products %}
     <div class="row">
         {% for p in products %}
         <div class="col-6 col-md-3 p-2">
@@ -48,6 +53,11 @@
         </div>
         {% endfor %}
     </div>
+    {% else %}
+    <div class="alert alert-warming mt-2">
+        KHÔNG có sản phẩm nào.
+    </div>
+    {% endif %}
 </section>
 
 <div class="mt-4 p-5 bg-primary text-white rounded">
