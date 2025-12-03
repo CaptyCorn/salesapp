@@ -1,42 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Trang chủ</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"></script>
+{% extends 'layout/base.html' %}
 
-</head>
-<body>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">ThanhTech</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Trang chủ</a>
-                </li>
-                {% for c in categories %}
-                <li class="nav-item">
-                    <a class="nav-link" href="/?category_id={{ c.id }}">{{ c }}</a>
-                </li>
-                {% endfor %}
-            </ul>
-            <form method="get" action="/" class="d-flex">
-                <input class="form-control me-2" type="text" placeholder="Từ khóa" name="kw">
-                <button class="btn btn-primary" type="button">Tìm</button>
-            </form>
-        </div>
-    </div>
-</nav>
-
+{% block content %}
 <section class="container p-5">
+    <ul class="pagination">
+        {% for i in range(1, pages + 1) %}
+        <li class="page-item"><a class="page-link" href="/?page={{i}}">{{ i }}</a></li>
+        {% endfor %}
+    </ul>
     {% if products %}
     <div class="row">
         {% for p in products %}
@@ -59,10 +29,4 @@
     </div>
     {% endif %}
 </section>
-
-<div class="mt-4 p-5 bg-primary text-white rounded">
-    <h1>&copy; 2025</h1>
-    <p>Thanh Ngo</p>
-</div>
-</body>
-</html>
+{% endblock %}
