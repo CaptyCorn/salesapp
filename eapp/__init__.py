@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+import cloudinary
 
 app = Flask(__name__)
 app.secret_key = "aldhfklaldjf@$@#%DG$%@e1212342123#$@#"
@@ -10,3 +11,7 @@ app.config['PAGE_SIZE'] = 8
 
 login = LoginManager(app)
 db = SQLAlchemy(app)
+
+cloudinary.config(cloud_name='dokemixsa',
+                  api_key='998256514618684',
+                  api_secret='AP4uB6GbFZgBXmTUy_fYXkVOU9Q')
